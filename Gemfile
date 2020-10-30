@@ -33,7 +33,7 @@ group :development, :test do
   gem 'activerecord-sqlserver-adapter', '~> 6.0'
 end
 
-group :development do
+group :production do
   gem 'pg'
 end
 
