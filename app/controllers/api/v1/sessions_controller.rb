@@ -3,6 +3,7 @@ before_action :sign_in_params, only: :create
 before_action :load_user, only: :create
 before_action :valid_token, only: :destroy
 skip_before_action :verify_signed_out_user, only: :destroy
+before_action :get_all_users, only: :index
 
 #sign_in
 def create
@@ -36,9 +37,39 @@ def destroy
       }, status: :ok
 end
 
+
+#view users
+def index
+  @user = User.all;
+  render json: {
+    status: 'SUCCESS',
+    messages: "Users Loaded",
+    is_success: true,
+    data: {user: @user}
+  }, status: :ok
+end
+
+
+
 private
 def sign_in_params
   params.require(:sign_in).permit(:email, :password)
+end
+
+
+
+def get_all_users
+  @user = User.all
+  if @user
+    return @user
+  else
+    render json: {
+        status: 'ERROR',
+        messages: "No users",
+        is_success: false,
+        data: {}
+      }, status: :bad_request
+  end
 end
 
 def load_user
