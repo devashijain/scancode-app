@@ -18,7 +18,7 @@ module Api
 
       private
       def scan_params
-        params.permit(:invoice_number, :transporter_name)
+        params.permit(:invoice_number)
 
       end
 
