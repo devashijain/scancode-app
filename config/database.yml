@@ -12,19 +12,19 @@ default: &default
 
 development:
   <<: *default
-  host: 192.168.1.18
+  host: server.xprtway.com
   port: 1433
-  database: test
-  username: sa
-  password: test@123
-
+  database: PROD
+  username: prod
+  password: prod@123
+  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: test
+  database: PROD
 
 production:
   <<: *default
-  database: test
+  database: PROD
